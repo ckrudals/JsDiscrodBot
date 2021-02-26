@@ -1,4 +1,5 @@
 import { MessageEmbed } from "discord.js";
+import axios from "axios"
 
 async function onMessage(message) {
   const prefix = "!";
@@ -40,6 +41,16 @@ async function onMessage(message) {
     });
 
   }
+
+  if (command == "강아지") {
+    axios.get("https://dog.ceo/api/breeds/image/random").then((response) => {
+      console.log(response.statusText);
+      console.log(response.data);
+
+      message.reply(response.data.message)
+    });
+  }
+  
 }
 
 export default onMessage;
